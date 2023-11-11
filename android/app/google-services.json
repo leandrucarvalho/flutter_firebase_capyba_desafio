@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "897683766880",
+    "project_id": "desafio-tecnico-capyba",
+    "storage_bucket": "desafio-tecnico-capyba.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:897683766880:android:346d1de3143b4a471f8d05",
+        "android_client_info": {
+          "package_name": "com.example.flutter_firebase_capyba_desafio"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBZ86tbZYjhSrHfyJGIVyqC9dXQgtCXbDo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
