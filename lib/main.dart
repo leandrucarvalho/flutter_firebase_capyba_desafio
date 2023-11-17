@@ -35,7 +35,9 @@ class MyApp extends StatelessWidget {
         '/userprofile': (context) => const UserProfilePage(
               userId: '',
             ),
-        '/confirmEmail': (context) => const ConfirmEmailPage(),
+        '/confirmEmail': (context) => const EmailConfirmationPage(
+              email: '',
+            ),
       },
     );
   }
