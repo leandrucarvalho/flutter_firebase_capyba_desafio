@@ -73,18 +73,18 @@ class CustomDrawer extends StatelessWidget {
                 Navigator.pop(context);
                 Navigator.pushNamed(
                   context,
-                  '/configPage',
+                  '/confirmEmail',
                 );
               },
               child: const Row(
                 children: [
                   FaIcon(
-                    FontAwesomeIcons.gear,
+                    FontAwesomeIcons.solidEnvelope,
                   ),
                   SizedBox(
                     width: 10,
                   ),
-                  Text("Configurações"),
+                  Text("Validar Email"),
                 ],
               ),
             ),

@@ -4,6 +4,7 @@ import 'package:flutter_firebase_capyba_desafio/pages/home/home_page.dart';
 import 'package:flutter_firebase_capyba_desafio/pages/login/login_page.dart';
 import 'package:flutter_firebase_capyba_desafio/pages/main_page.dart';
 import 'firebase_options.dart';
+import 'pages/confirmEmail/confirm_email_page.dart';
 import 'pages/register/register_page.dart';
 import 'pages/userProfile/user_profile.dart';
 
@@ -31,7 +32,10 @@ class MyApp extends StatelessWidget {
         '/login': (context) => const LoginPage(),
         '/home': (context) => const HomePage(),
         '/register': (context) => const RegisterPage(),
-        '/userprofile': (context) => const UserProfile(),
+        '/userprofile': (context) => const UserProfilePage(
+              userId: '',
+            ),
+        '/confirmEmail': (context) => const ConfirmEmailPage(),
       },
     );
   }
