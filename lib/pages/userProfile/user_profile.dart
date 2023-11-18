@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_firebase_capyba_desafio/models/user_model.dart';
 
 import '../../controller/user_controller.dart';
+import '../../di/di_setup.dart';
 
 class UserProfilePage extends StatefulWidget {
   final String userId;
@@ -24,10 +26,16 @@ class UserProfilePageState extends State<UserProfilePage> {
     _nameController = TextEditingController();
     _lastNameController = TextEditingController();
     _emailController = TextEditingController();
-    _userController = UserController();
+    _userController = getIt.get<UserController>();
+    fetchUser();
+  }
 
-    _userController.loadUserData(
-        _nameController, _lastNameController, _emailController);
+  @override
+  void dispose() {
+    _nameController.dispose();
+    _lastNameController.dispose();
+    _emailController.dispose();
+    super.dispose();
   }
 
   void showMessage(String message) {
@@ -37,6 +45,17 @@ class UserProfilePageState extends State<UserProfilePage> {
         duration: const Duration(seconds: 2),
       ),
     );
+  }
+
+  void fetchUser() async {
+    await _userController.loadUserData();
+    fillControllers(_userController.userModel!);
+  }
+
+  void fillControllers(UserModel userModel) {
+    _nameController.text = userModel.firstname!;
+    _lastNameController.text = userModel.lastname!;
+    _emailController.text = userModel.email!;
   }
 
   @override
@@ -67,11 +86,13 @@ class UserProfilePageState extends State<UserProfilePage> {
             const SizedBox(height: 32),
             ElevatedButton(
               onPressed: () async {
-                var result = await _userController.updateUserData(
-                    _nameController, _lastNameController, _emailController);
+                var userModel = UserModel(
+                  firstname: _nameController.text,
+                  lastname: _lastNameController.text,
+                  email: _emailController.text,
+                );
+                var result = await _userController.updateUserData(userModel);
                 if (result == null) {
-                  _userController.updateUserData(
-                      _nameController, _lastNameController, _emailController);
                   showMessage("Dados atualizados com sucesso!");
                   if (mounted) {
                     Navigator.pop(context);

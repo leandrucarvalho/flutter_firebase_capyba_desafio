@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter_firebase_capyba_desafio/di/di_setup.dart';
 import 'package:flutter_firebase_capyba_desafio/pages/home/home_page.dart';
 import 'package:flutter_firebase_capyba_desafio/pages/login/login_page.dart';
 import 'package:flutter_firebase_capyba_desafio/pages/main_page.dart';
@@ -13,7 +14,10 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  runApp(const MyApp());
+  setup();
+  runApp(
+    const MyApp(),
+  );
 }
 
 class MyApp extends StatelessWidget {

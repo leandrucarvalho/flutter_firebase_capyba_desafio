@@ -21,7 +21,7 @@ class EmailConfirmationPageState extends State<EmailConfirmationPage> {
           showMessage('E-mail ja foi verificado!');
         } else {
           await user.sendEmailVerification();
-          showMessage('E-mail de confirmação reenviado com sucesso!');
+          showMessage('E-mail de confirmação enviado com sucesso!');
         }
       } else {
         showMessage('Erro: Usuário não autenticado.');
