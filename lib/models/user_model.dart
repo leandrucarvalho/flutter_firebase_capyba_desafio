@@ -2,11 +2,13 @@ class UserModel {
   late String? firstname;
   late String? lastname;
   late String? email;
+  late bool emailConfirmed;
 
   UserModel({
     this.firstname,
     this.lastname,
     this.email,
+    this.emailConfirmed = false,
   });
 
   factory UserModel.fromFirestore(

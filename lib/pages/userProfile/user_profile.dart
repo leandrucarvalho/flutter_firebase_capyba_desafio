@@ -5,9 +5,7 @@ import '../../controller/user_controller.dart';
 import '../../di/di_setup.dart';
 
 class UserProfilePage extends StatefulWidget {
-  final String userId;
-
-  const UserProfilePage({super.key, required this.userId});
+  const UserProfilePage({super.key});
 
   @override
   UserProfilePageState createState() => UserProfilePageState();
@@ -49,7 +47,9 @@ class UserProfilePageState extends State<UserProfilePage> {
 
   void fetchUser() async {
     await _userController.loadUserData();
-    fillControllers(_userController.userModel!);
+    if (_userController.userModel != null) {
+      fillControllers(_userController.userModel!);
+    }
   }
 
   void fillControllers(UserModel userModel) {

@@ -123,8 +123,8 @@ class CustomDrawer extends StatelessWidget {
                       ),
                       TextButton(
                         onPressed: () {
-                          loginController.signOut();
                           Navigator.pop(context);
+                          loginController.signOut();
                         },
                         child: const Text("Sim"),
                       ),

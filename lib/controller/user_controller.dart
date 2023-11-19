@@ -38,6 +38,8 @@ class UserController extends ChangeNotifier {
   }
 
   Future<String?> updateUserData(UserModel userModel) async {
+    isLoading = true;
+    error = null;
     try {
       QuerySnapshot userSnapshot = await FirebaseFirestore.instance
           .collection('users')

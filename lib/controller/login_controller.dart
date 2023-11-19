@@ -54,6 +54,7 @@ class AuthService with ChangeNotifier {
         'firstname': firstName,
         'lastname': lastName,
         'email': email,
+        'emailConfirmed': false,
       },
     );
     return null;

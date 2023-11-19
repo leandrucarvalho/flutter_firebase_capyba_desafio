@@ -1,30 +1,31 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_firebase_capyba_desafio/controller/home_controller.dart';
-import 'package:flutter_firebase_capyba_desafio/models/home_model.dart'; // Importe o modelo HomeModel
+import 'package:flutter_firebase_capyba_desafio/controller/restricted_controller.dart';
+// Importe o modelo HomeModel
+import 'package:flutter_firebase_capyba_desafio/models/restricted_model.dart';
 
 import '../../di/di_setup.dart';
 
-class HomePage extends StatefulWidget {
-  const HomePage({Key? key}) : super(key: key);
+class RestrictedPage extends StatefulWidget {
+  const RestrictedPage({Key? key}) : super(key: key);
 
   @override
-  State<HomePage> createState() => HomePageState();
+  State<RestrictedPage> createState() => RestrictedPageState();
 }
 
-class HomePageState extends State<HomePage> {
-  late HomeController _homeController;
+class RestrictedPageState extends State<RestrictedPage> {
+  late RestrictedController _restrictedController;
 
   @override
   void initState() {
     super.initState();
-    _homeController = getIt.get<HomeController>();
+    _restrictedController = getIt.get<RestrictedController>();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: FutureBuilder<List<HomeModel>>(
-        future: _homeController.fetchHomeData(),
+      body: FutureBuilder<List<RestrictedModel>>(
+        future: _restrictedController.fetchRestrictedData(),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return const Center(
@@ -42,7 +43,7 @@ class HomePageState extends State<HomePage> {
             return ListView.builder(
               itemCount: snapshot.data!.length,
               itemBuilder: (context, index) {
-                HomeModel data = snapshot.data![index];
+                RestrictedModel data = snapshot.data![index];
                 return ListTile(
                   title: Text(
                     'Documento ${index + 1}',
@@ -50,9 +51,9 @@ class HomePageState extends State<HomePage> {
                   subtitle: Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      Text('Nome: ${data.nome}'),
-                      Text('Idade: ${data.idade}'),
-                      Text('Cidade: ${data.cidade}'),
+                      Text('Campo 1: ${data.campo1}'),
+                      Text('Campo 2: ${data.campo2}'),
+                      Text('Campo 3: ${data.campo3}'),
                       // Adicione mais linhas conforme necessário
                     ],
                   ),
