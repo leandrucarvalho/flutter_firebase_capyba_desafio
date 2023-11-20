@@ -36,7 +36,13 @@ class RestrictedPageState extends State<RestrictedPage> {
                 child: SizedBox.shrink(),
               ),
             AuthData(user: var user) => !user.emailConfirmed
-                ? const Text('Error aqui ')
+                ? const Center(
+                    child: Text(
+                      'Acesso negado! Por favor, valide seu email no meu lateral',
+                      style: TextStyle(fontWeight: FontWeight.bold),
+                      textAlign: TextAlign.center,
+                    ),
+                  )
                 : FutureBuilder<List<RestrictedModel>>(
                     future: _restrictedController.fetchRestrictedData(),
                     builder: (context, snapshot) {
