@@ -60,50 +60,91 @@ class UserProfilePageState extends State<UserProfilePage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Perfil do Usuário'),
-      ),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            TextField(
-              controller: _nameController,
-              decoration: const InputDecoration(labelText: 'Nome'),
-            ),
-            const SizedBox(height: 16),
-            TextField(
-              controller: _lastNameController,
-              decoration: const InputDecoration(labelText: 'Sobrenome'),
-            ),
-            const SizedBox(height: 16),
-            TextField(
-              controller: _emailController,
-              decoration: const InputDecoration(labelText: 'E-mail'),
-            ),
-            const SizedBox(height: 32),
-            ElevatedButton(
-              onPressed: () async {
-                var userModel = UserModel(
-                  firstname: _nameController.text,
-                  lastname: _lastNameController.text,
-                  email: _emailController.text,
-                );
-                var result = await _userController.updateUserData(userModel);
-                if (result == null) {
-                  showMessage("Dados atualizados com sucesso!");
-                  if (mounted) {
-                    Navigator.pop(context);
+    return SafeArea(
+      child: Scaffold(
+        appBar: AppBar(
+          title: const Text('Perfil do Usuário'),
+          backgroundColor: Colors.green,
+        ),
+        body: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              TextField(
+                cursorColor: Colors.green,
+                controller: _nameController,
+                decoration: const InputDecoration(
+                  labelText: 'Nome',
+                  labelStyle: TextStyle(
+                      color: Colors.green, fontWeight: FontWeight.bold),
+                  focusedBorder: UnderlineInputBorder(
+                    borderSide: BorderSide(
+                      color: Colors.green,
+                    ),
+                  ),
+                ),
+              ),
+              const SizedBox(height: 16),
+              TextField(
+                cursorColor: Colors.green,
+                controller: _lastNameController,
+                decoration: const InputDecoration(
+                  labelText: 'Sobrenome',
+                  labelStyle: TextStyle(
+                      color: Colors.green, fontWeight: FontWeight.bold),
+                  focusedBorder: UnderlineInputBorder(
+                    borderSide: BorderSide(
+                      color: Colors.green,
+                    ),
+                  ),
+                ),
+              ),
+              const SizedBox(height: 16),
+              TextField(
+                cursorColor: Colors.green,
+                controller: _emailController,
+                decoration: const InputDecoration(
+                  labelText: 'E-mail',
+                  labelStyle: TextStyle(
+                      color: Colors.green, fontWeight: FontWeight.bold),
+                  focusedBorder: UnderlineInputBorder(
+                    borderSide: BorderSide(
+                      color: Colors.green,
+                    ),
+                  ),
+                ),
+              ),
+              const SizedBox(height: 32),
+              ElevatedButton(
+                onPressed: () async {
+                  var userModel = UserModel(
+                    firstname: _nameController.text,
+                    lastname: _lastNameController.text,
+                    email: _emailController.text,
+                  );
+                  var result = await _userController.updateUserData(userModel);
+                  if (result == null) {
+                    showMessage("Dados atualizados com sucesso!");
+                    if (mounted) {
+                      Navigator.pop(context);
+                    }
+                  } else {
+                    showMessage("[ERRO] Os dados não foram atualizados!");
                   }
-                } else {
-                  showMessage("[ERRO] Os dados não foram atualizados!");
-                }
-              },
-              child: const Text('Salvar Alterações'),
-            ),
-          ],
+                },
+                style: const ButtonStyle(
+                  backgroundColor: MaterialStatePropertyAll(
+                    Colors.green,
+                  ),
+                ),
+                child: const Text(
+                  'Salvar Alterações',
+                  style: TextStyle(color: Colors.white),
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );

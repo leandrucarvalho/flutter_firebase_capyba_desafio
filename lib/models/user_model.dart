@@ -18,6 +18,7 @@ class UserModel {
       firstname: snapshot['firstname'],
       lastname: snapshot['lastname'],
       email: snapshot['email'],
+      emailConfirmed: snapshot['emailVerified'],
     );
   }
 

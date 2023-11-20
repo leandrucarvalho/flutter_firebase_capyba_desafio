@@ -1,41 +1,39 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import '../controller/login_controller.dart';
+import '../di/di_setup.dart';
+import '../state/auth_state.dart';
 
 class CustomDrawer extends StatelessWidget {
   const CustomDrawer({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final loginController = AuthService();
-    final user = FirebaseAuth.instance.currentUser;
-
+    final loginController = getIt.get<LoginController>();
     return Drawer(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          UserAccountsDrawerHeader(
-            decoration: const BoxDecoration(
-              color: Colors.deepPurpleAccent,
-            ),
-            currentAccountPicture: const CircleAvatar(
-              backgroundColor: Colors.black,
-              child: Icon(Icons.person_2),
-            ),
-            accountName: FutureBuilder<String?>(
-              future: loginController.fetchUserDetails(),
-              builder: (context, snapshot) {
-                if (snapshot.connectionState == ConnectionState.done) {
-                  if (snapshot.hasData) {
-                    return Text(snapshot.data!);
-                  }
-                }
-                return const Text("Carregando...");
-              },
-            ),
-            accountEmail: Text('${user?.email}'),
+          ValueListenableBuilder(
+            valueListenable: loginController.state,
+            builder: (context, state, _) {
+              return switch (state) {
+                AuthInitial() || AuthLoading() => const Text("Carregando..."),
+                AuthError() => const Text("Erro ao carregar os dados"),
+                AuthData(user: var user) => UserAccountsDrawerHeader(
+                    decoration: const BoxDecoration(
+                      color: Colors.green,
+                    ),
+                    currentAccountPicture: const CircleAvatar(
+                      backgroundColor: Colors.black,
+                      child: Icon(Icons.person_2),
+                    ),
+                    accountName: Text('${user.firstname}'),
+                    accountEmail: Text('${user.email}'),
+                  ),
+              };
+            },
           ),
           const SizedBox(
             height: 10,
@@ -112,21 +110,34 @@ class CustomDrawer extends StatelessWidget {
                 context: context,
                 builder: (BuildContext bc) {
                   return AlertDialog(
-                    title: const Text("Trilha Flutter"),
+                    title: const Text("Capyba flutter app"),
                     content: const Text("Deseja realmente sair do app?"),
                     actions: [
                       TextButton(
                         onPressed: () {
                           Navigator.pop(context);
                         },
-                        child: const Text("Não"),
+                        child: const Text(
+                          "Não",
+                          style: TextStyle(color: Colors.green),
+                        ),
                       ),
                       TextButton(
                         onPressed: () {
                           Navigator.pop(context);
+
                           loginController.signOut();
+
+                          Navigator.pushNamedAndRemoveUntil(
+                            context,
+                            '/login',
+                            (route) => false,
+                          );
                         },
-                        child: const Text("Sim"),
+                        child: const Text(
+                          "Sim",
+                          style: TextStyle(color: Colors.red),
+                        ),
                       ),
                     ],
                   );

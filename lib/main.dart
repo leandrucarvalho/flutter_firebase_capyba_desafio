@@ -1,9 +1,10 @@
-import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_firebase_capyba_desafio/di/di_setup.dart';
 import 'package:flutter_firebase_capyba_desafio/pages/homeView/home_view_page.dart';
 import 'package:flutter_firebase_capyba_desafio/pages/login/login_page.dart';
-import 'package:flutter_firebase_capyba_desafio/pages/main_page.dart';
+import 'package:flutter_firebase_capyba_desafio/pages/splash/splash_page.dart';
+
 import 'firebase_options.dart';
 import 'pages/confirmEmail/confirm_email_page.dart';
 import 'pages/register/register_page.dart';
@@ -31,8 +32,9 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const MainPage(),
+      initialRoute: '/',
       routes: {
+        '/': (context) => const SplashPage(),
         '/login': (context) => const LoginPage(),
         '/home': (context) => const HomePageView(),
         '/register': (context) => const RegisterPage(),

@@ -3,10 +3,13 @@ import 'package:flutter_firebase_capyba_desafio/controller/restricted_controller
 import 'package:flutter_firebase_capyba_desafio/controller/user_controller.dart';
 import 'package:get_it/get_it.dart';
 
+import '../controller/login_controller.dart';
+
 final getIt = GetIt.instance;
 
 void setup() {
   getIt.registerSingleton<UserController>(UserController());
   getIt.registerSingleton<HomeController>(HomeController());
   getIt.registerSingleton<RestrictedController>(RestrictedController());
+  getIt.registerSingleton<LoginController>(LoginController());
 }

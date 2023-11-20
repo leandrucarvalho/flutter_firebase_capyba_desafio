@@ -46,37 +46,49 @@ class EmailConfirmationPageState extends State<EmailConfirmationPage> {
   @override
   Widget build(BuildContext context) {
     User? user = FirebaseAuth.instance.currentUser;
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Confirmação de E-mail'),
-      ),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            Text(
-              'Um e-mail de confirmação foi enviado para o seguinte endereço: ${user!.email}',
-              style: const TextStyle(fontSize: 16),
-            ),
-            const SizedBox(height: 8),
-            Text(
-              widget.email,
-              style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-            ),
-            const SizedBox(height: 16),
-            const Text(
-              'Por favor, verifique sua caixa de entrada e siga as instruções para confirmar seu e-mail.',
-              style: TextStyle(fontSize: 16),
-            ),
-            const SizedBox(height: 16),
-            ElevatedButton(
-              onPressed: _resendConfirmationEmail,
-              child: Text(user.emailVerified
-                  ? 'Reenviar E-mail de Confirmação'
-                  : 'Enviar E-mail de Confirmação'),
-            ),
-          ],
+    return SafeArea(
+      child: Scaffold(
+        appBar: AppBar(
+          title: const Text('Confirmação de E-mail'),
+          backgroundColor: Colors.green,
+        ),
+        body: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              Text(
+                'Um e-mail de confirmação foi enviado para o seguinte endereço: ${user!.email}',
+                style: const TextStyle(fontSize: 16),
+              ),
+              const SizedBox(height: 8),
+              Text(
+                widget.email,
+                style:
+                    const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+              ),
+              const SizedBox(height: 16),
+              const Text(
+                'Por favor, verifique sua caixa de entrada e siga as instruções para confirmar seu e-mail.',
+                style: TextStyle(fontSize: 16),
+              ),
+              const SizedBox(height: 16),
+              ElevatedButton(
+                onPressed: _resendConfirmationEmail,
+                style: const ButtonStyle(
+                  backgroundColor: MaterialStatePropertyAll(
+                    Colors.green,
+                  ),
+                ),
+                child: Text(
+                  user.emailVerified
+                      ? 'Reenviar E-mail de Confirmação'
+                      : 'Enviar E-mail de Confirmação',
+                  style: const TextStyle(color: Colors.white),
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );

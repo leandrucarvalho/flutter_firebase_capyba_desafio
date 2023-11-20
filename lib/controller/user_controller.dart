@@ -5,8 +5,6 @@ import 'package:flutter/material.dart';
 import '../models/user_model.dart';
 
 class UserController extends ChangeNotifier {
-  final User? user = FirebaseAuth.instance.currentUser;
-
   UserModel? userModel;
   String? error;
   bool isLoading = false;
@@ -15,6 +13,7 @@ class UserController extends ChangeNotifier {
     isLoading = true;
     error = null;
     try {
+      final User? user = FirebaseAuth.instance.currentUser;
       final userSnapshot = await FirebaseFirestore.instance
           .collection('users')
           .where('email', isEqualTo: user!.email)
@@ -22,6 +21,7 @@ class UserController extends ChangeNotifier {
           .then(
         (QuerySnapshot doc) {
           final data = doc.docs.first.data() as Map<String, dynamic>;
+          data['emailVerified'] = user.emailVerified;
           return data;
         },
       );
@@ -41,6 +41,7 @@ class UserController extends ChangeNotifier {
     isLoading = true;
     error = null;
     try {
+      final User? user = FirebaseAuth.instance.currentUser;
       QuerySnapshot userSnapshot = await FirebaseFirestore.instance
           .collection('users')
           .where('email', isEqualTo: user!.email)
@@ -63,10 +64,11 @@ class UserController extends ChangeNotifier {
   }
 
   Future<String?> fetchUserDetails() async {
+    final User? user = FirebaseAuth.instance.currentUser;
     if (user != null) {
       QuerySnapshot userQuery = await FirebaseFirestore.instance
           .collection('users')
-          .where('email', isEqualTo: user!.email)
+          .where('email', isEqualTo: user.email)
           .get();
       if (userQuery.docs.isNotEmpty) {
         String name = userQuery.docs[0]['firstname'];
