@@ -90,6 +90,7 @@ class _RegisterPageState extends State<RegisterPage> {
                           child: Column(
                             children: [
                               TextFormField(
+                                cursorColor: Colors.green,
                                 controller: _firstNameController,
                                 decoration: InputDecoration(
                                   enabledBorder: OutlineInputBorder(
@@ -98,8 +99,8 @@ class _RegisterPageState extends State<RegisterPage> {
                                     borderRadius: BorderRadius.circular(12),
                                   ),
                                   focusedBorder: OutlineInputBorder(
-                                    borderSide: const BorderSide(
-                                        color: Colors.deepPurple),
+                                    borderSide:
+                                        const BorderSide(color: Colors.green),
                                     borderRadius: BorderRadius.circular(12),
                                   ),
                                   hintText: 'Nome',
@@ -109,6 +110,7 @@ class _RegisterPageState extends State<RegisterPage> {
                                 height: 10,
                               ),
                               TextFormField(
+                                cursorColor: Colors.green,
                                 controller: _lastNameController,
                                 decoration: InputDecoration(
                                   enabledBorder: OutlineInputBorder(
@@ -117,8 +119,8 @@ class _RegisterPageState extends State<RegisterPage> {
                                     borderRadius: BorderRadius.circular(12),
                                   ),
                                   focusedBorder: OutlineInputBorder(
-                                    borderSide: const BorderSide(
-                                        color: Colors.deepPurple),
+                                    borderSide:
+                                        const BorderSide(color: Colors.green),
                                     borderRadius: BorderRadius.circular(12),
                                   ),
                                   hintText: 'Sobrenome',
@@ -128,6 +130,7 @@ class _RegisterPageState extends State<RegisterPage> {
                                 height: 10,
                               ),
                               TextFormField(
+                                cursorColor: Colors.green,
                                 controller: _emailController,
                                 decoration: InputDecoration(
                                   enabledBorder: OutlineInputBorder(
@@ -136,8 +139,8 @@ class _RegisterPageState extends State<RegisterPage> {
                                     borderRadius: BorderRadius.circular(12),
                                   ),
                                   focusedBorder: OutlineInputBorder(
-                                    borderSide: const BorderSide(
-                                        color: Colors.deepPurple),
+                                    borderSide:
+                                        const BorderSide(color: Colors.green),
                                     borderRadius: BorderRadius.circular(12),
                                   ),
                                   hintText: 'Email',
@@ -147,6 +150,7 @@ class _RegisterPageState extends State<RegisterPage> {
                                 height: 10,
                               ),
                               TextFormField(
+                                cursorColor: Colors.green,
                                 obscureText: true,
                                 controller: _passwordController,
                                 decoration: InputDecoration(
@@ -156,8 +160,8 @@ class _RegisterPageState extends State<RegisterPage> {
                                     borderRadius: BorderRadius.circular(12),
                                   ),
                                   focusedBorder: OutlineInputBorder(
-                                    borderSide: const BorderSide(
-                                        color: Colors.deepPurple),
+                                    borderSide:
+                                        const BorderSide(color: Colors.green),
                                     borderRadius: BorderRadius.circular(12),
                                   ),
                                   hintText: 'Senha',
@@ -167,6 +171,7 @@ class _RegisterPageState extends State<RegisterPage> {
                                 height: 10,
                               ),
                               TextFormField(
+                                cursorColor: Colors.green,
                                 obscureText: true,
                                 controller: _confirmPasswordController,
                                 decoration: InputDecoration(
@@ -176,8 +181,8 @@ class _RegisterPageState extends State<RegisterPage> {
                                     borderRadius: BorderRadius.circular(12),
                                   ),
                                   focusedBorder: OutlineInputBorder(
-                                    borderSide: const BorderSide(
-                                        color: Colors.deepPurple),
+                                    borderSide:
+                                        const BorderSide(color: Colors.green),
                                     borderRadius: BorderRadius.circular(12),
                                   ),
                                   hintText: 'Confirme sua senha',
@@ -205,7 +210,7 @@ class _RegisterPageState extends State<RegisterPage> {
                           child: Ink(
                             padding: const EdgeInsets.all(20),
                             decoration: BoxDecoration(
-                              color: Colors.deepPurple,
+                              color: Colors.green,
                               borderRadius: BorderRadius.circular(
                                 12,
                               ),
@@ -268,7 +273,7 @@ class _RegisterPageState extends State<RegisterPage> {
                             Text(
                               ' Entrar agora!',
                               style: TextStyle(
-                                color: Colors.deepPurple,
+                                color: Colors.green,
                                 fontWeight: FontWeight.bold,
                               ),
                             ),
