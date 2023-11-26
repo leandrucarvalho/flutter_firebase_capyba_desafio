@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_firebase_capyba_desafio/controller/home_controller.dart';
-import 'package:flutter_firebase_capyba_desafio/models/home_model.dart'; // Importe o modelo HomeModel
+import 'package:flutter_firebase_capyba_desafio/models/home_model.dart';
 
 import '../../di/di_setup.dart';
 
